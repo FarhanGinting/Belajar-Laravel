@@ -16,4 +16,11 @@ class Student extends Model
 
     // public $timestamps = false;
 
+    protected $fillable = [
+        'name',
+        'gender',
+        'nis',
+        'class_id'
+    ];
+
 }
