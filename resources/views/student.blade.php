@@ -1,5 +1,5 @@
 @extends('layouts.Bone')
-@section('title', 'Home')
+@section('title', 'Student')
 @section('content')
     <h1>ini halaman student</h1>
     {{-- <p>
