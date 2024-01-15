@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
+
 class StudentController extends Controller
 {
     public function index()
     {
         // $name = 'budi';
-        // eloquent orm (Rekomendasi | ✅ Friendly User)
+        // eloquent orm (Rekomendasi | ✅ Friendly User) 
         //query builder (This Good 🤓)
         // raw query    (Not Recommended | 💀 SQL INJECTION)
 
-        // $student = Student::all();
-        // return view('student', ['studentList' => $student]);
+        $student = Student::with('class' )->get();
+        return view('student', ['studentList' => $student]);
 
         // Php Biasa
         // 1. Hitung Jumlah Nilai
@@ -57,11 +59,11 @@ class StudentController extends Controller
         // Student::find(24)->delete();
 
         // 📚 Belejar Collections
-        $nilai = [9, 8, 7, 6, 5, 4, 3, 10, 6, 9, 4, 1];
-        $map = collect($nilai)->map(function ($value){
-                return $value * 2;
-        })->all();
-        dd($map);
+        // $nilai = [9, 8, 7, 6, 5, 4, 3, 10, 6, 9, 4, 1];
+        // $map = collect($nilai)->map(function ($value){
+        //         return $value * 2;
+        // })->all();
+        // dd($map);
         // $nilaiKaliDua = [];
         // foreach ($nilai as $value) {
         //     array_push($nilaiKaliDua, $value * 2);
