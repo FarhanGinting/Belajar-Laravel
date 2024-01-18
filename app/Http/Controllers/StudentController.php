@@ -13,7 +13,7 @@ class StudentController extends Controller
         //query builder (This Good 🤓)
         // raw query    (Not Recommended | 💀 SQL INJECTION)
 
-        $student = Student::with('class' )->get();
+        $student = Student::with(['class', 'extracurriculars'] )->get();
         return view('student', ['studentList' => $student]);
 
         // Php Biasa

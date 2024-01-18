@@ -6,7 +6,7 @@
         {{ $studentList }}
     </p> --}}
 
-    <h3>Student List
+    <h3>Student List</h3>
         <table class="table">
             <thead>
                 <tr>
@@ -15,7 +15,8 @@
                     <th>Gender</th>
                     <th>NIS</th>
                     <th>Class ID</th>
-                    <th>Claass</th>
+                    
+                    <th>Extracurricular</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,10 +27,15 @@
                     <td>{{ $data->gender }}</td>
                      <td>{{ $data->nis }}</td>
                     <td>{{ $data->class['name'] }}</td>
+                    <td>
+                        @foreach ($data->extracurriculars as $item)
+                            - {{ $item->name }} <br>
+                        @endforeach
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
         
-    </h3>
+    
 @endsection
