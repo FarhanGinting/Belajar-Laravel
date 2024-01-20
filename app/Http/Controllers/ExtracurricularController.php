@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Exctracurricular;
 
 class ExtracurricularController extends Controller
@@ -17,5 +18,18 @@ class ExtracurricularController extends Controller
         $ekskul = Exctracurricular::with(['student'])->
         findOrFail($id);
         return view('extracurricular-detail', ['ekskul' => $ekskul]);
+    }
+
+    public function create()
+    {
+        return view('extracurricular-add');
+    }
+
+    public function store(Request $request)
+    {
+
+        $ekskul = Exctracurricular::create($request->all());
+
+        return redirect('/extracurricular');
     }
 }

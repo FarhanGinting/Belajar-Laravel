@@ -2,9 +2,10 @@
 @section('title', 'Extracurricular')
 @section('content')
     <h1>ini halaman Exctracurricular</h1>
-    {{-- <p>
-        {{ $studentList }}
-    </p> --}}
+    
+    <div class="my-5">
+        <a href="extracurricular-add" class="btn btn-primary">Add Data</a>
+    </div>
 
     <h3>Exctracurricular List </h3>
 

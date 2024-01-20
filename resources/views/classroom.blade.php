@@ -1,11 +1,10 @@
 @extends('layouts.Bone')
 @section('title', 'ClassRoom')
 @section('content')
-    <h1>ini halaman class</h1>
-    {{-- <p>
-        {{ $studentList }}
-    </p> --}}
-
+   
+    <div class="my-5">
+        <a href="class-add" class="btn btn-primary">Add Data</a>
+    </div>
     <h3>class List
         {{-- <ol>
             @foreach ($studentList as $data)

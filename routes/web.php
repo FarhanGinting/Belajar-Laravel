@@ -26,15 +26,23 @@ Route::get('/', function () {
 });
 
 Route::get('/students', [StudentController::class, 'index']);
+Route::get('/student-add', [StudentController::class, 'create']);
+Route::post('/student-store', [StudentController::class, 'store']);
 Route::get('/student-detail/{id}', [StudentController::class, 'show']);
 
 Route::get('/class', [ClassController::class, 'index']);
+Route::get('/class-add', [ClassController::class, 'create']);
+Route::post('/class-store', [ClassController::class, 'store']);
 Route::get('/class-detail/{id}', [ClassController::class, 'show']);
 
 Route::get('/extracurricular', [ExtracurricularController::class, 'index']);   
+Route::get('/extracurricular-add', [ExtracurricularController::class, 'create']);   
+Route::post('/extracurricular-store', [ExtracurricularController::class, 'store']);   
 Route::get('/extracurricular-detail/{id}', [ExtracurricularController::class, 'show']);   
 
 Route::get('/teacher', [TeacherController::class, 'index']);   
+Route::get('/teacher-add', [TeacherController::class, 'create']);   
+Route::post('/teacher-store', [TeacherController::class, 'store']);   
 Route::get('/teacher-detail/{id}', [TeacherController::class, 'show']);   
 
 
