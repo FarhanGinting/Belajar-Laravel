@@ -29,7 +29,7 @@
             {{ $i }} <br>
         @endfor --}}
 
-
+{{-- 
         <table class="table">
             <tr>
                 <th>No.</th>
@@ -41,6 +41,6 @@
                     <td>{{ $data }}</td>
                 </tr>
             @endforeach
-        </table>
+        </table> --}}
         
 @endsection

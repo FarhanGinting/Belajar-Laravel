@@ -20,8 +20,7 @@
             <tr>
                 <th>No</th>
                 <th>Name</th>
-                <th>Students</th>
-                <th>Homeroom Teacher</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -29,12 +28,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->name }}</td>
-                    <td>
-                        @foreach ($data->students as $student)
-                            - {{ $student['name']}} <br>
-                        @endforeach
-                    </td>
-                    <td>{{ $data->homeroomTeacher->name }}</td>
+                    <td><a href="class-detail/{{ $data->id }}">Detail</a></td>
                 </tr>
             @endforeach
         </tbody>

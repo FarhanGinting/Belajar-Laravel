@@ -21,9 +21,15 @@ class ClassController extends Controller
 
 
          // 2️⃣Eager Load 👑
-         $class = ClassRoom::with('students', 'homeroomTeacher')->get(); // Cara Request Data => Mengikuti Kode yang diberikan
+         $class = ClassRoom::get(); // Cara Request Data => Mengikuti Kode yang diberikan
          // Select * from table class
          // Select * from student where class in (1A,1B,1C,1D)
         return view('classroom', ['classList' => $class]);
+    }
+
+    public function show($id){
+        $class = ClassRoom::with(['students', 'homeroomTeacher'])
+        ->findOrFail($id);
+        return view('class-detail', ['class' => $class]);
     }
 }
