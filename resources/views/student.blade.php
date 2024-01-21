@@ -40,6 +40,8 @@
                         <a href="student-detail/{{ $data->id }}">Detail</a>
                         |
                         <a href="student-edit/{{ $data->id }}"> Edit</a>
+                        |
+                        <a href="student-delete/{{ $data->id }}"> Delete</a>
                     </td>
                     {{-- <td>{{ $data->class['name'] }}</td>
                     <td>

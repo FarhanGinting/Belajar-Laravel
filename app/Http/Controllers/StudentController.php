@@ -6,6 +6,7 @@ use App\Http\Requests\StudentCreateRequest;
 use App\Models\ClassRoom;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
@@ -121,7 +122,7 @@ class StudentController extends Controller
 
     public function store(StudentCreateRequest $request)
     {
-    
+
         // $student = new Student;
         // $student->name = $request->name;
         // $student->gender = $request->gender;
@@ -144,7 +145,8 @@ class StudentController extends Controller
         return view('student-edit', ['student' => $student, 'class' => $class]);
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $student = Student::findOrFail($id);
         // $student->name = $request->name;
         // $student->gender = $request->gender;
@@ -153,6 +155,34 @@ class StudentController extends Controller
         // $student->save();
 
         $student->update($request->all());
+        if ($student) {
+            Session::flash('status', 'Success');
+            Session::flash('message', 'Update Student Successfully created ! ');
+        }
+        return redirect('/students');
+    }
+
+    public function delete($id)
+    {
+        $student = Student::findOrFail($id);
+        return view('student-delete', ['student' => $student]);
+    }
+
+    public function destroy($id)
+    {
+        // 1️⃣ Query Builder 🐌
+        //$deleteStudent = DB::table('students')->where('id', $id)->delete();
+       
+
+       // 2️⃣ Eloquenmt
+        $deletedStudent = Student::findOrFail($id);
+        $deletedStudent->delete();
+
+        if ($deletedStudent) {
+            Session::flash('status', 'Success');
+            Session::flash('message', 'Delete Successfully created ! ');
+        }
+
         return redirect('/students');
     }
 }
