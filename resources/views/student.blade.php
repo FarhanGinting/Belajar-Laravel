@@ -6,10 +6,16 @@
         {{ $studentList }}
     </p> --}}
 
-    <h3>Student List</h3>
+   
     <div class="my-5">
         <a href="student-add" class="btn btn-primary">Add Data</a>
     </div>
+    <h3>Student List</h3> 
+    @if (Session::has('status'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('message'); }}
+        </div>
+    @endif
         <table class="table">
             <thead>
                 <tr>
