@@ -7,8 +7,9 @@
     </p> --}}
 
    
-    <div class="my-5">
+    <div class="my-5 d-flex justify-content-between">
         <a href="student-add" class="btn btn-primary">Add Data</a>
+        <a href="students-showdeleted" class="btn btn-info">Show Delete Data</a>
     </div>
     <h3>Student List</h3> 
     @if (Session::has('status'))

@@ -6,7 +6,6 @@ use App\Http\Requests\StudentCreateRequest;
 use App\Models\ClassRoom;
 use App\Models\Student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
@@ -172,9 +171,8 @@ class StudentController extends Controller
     {
         // 1️⃣ Query Builder 🐌
         //$deleteStudent = DB::table('students')->where('id', $id)->delete();
-       
 
-       // 2️⃣ Eloquenmt
+        // 2️⃣ Eloquenmt
         $deletedStudent = Student::findOrFail($id);
         $deletedStudent->delete();
 
@@ -183,6 +181,22 @@ class StudentController extends Controller
             Session::flash('message', 'Delete Successfully created ! ');
         }
 
+        return redirect('/students');
+    }
+
+    public function showdeleted()
+    {
+        $deletedStudent = Student::onlyTrashed()->get();
+        return view('student-delete-list', ['student' => $deletedStudent]);
+    }
+
+    public function restore($id)
+    {
+        $deletedStudent = Student::withTrashed()->where('id', $id)->restore();
+        if ($deletedStudent) {
+            Session::flash('status', 'Success');
+            Session::flash('message', 'Restore Successfully created ! ');
+        }
         return redirect('/students');
     }
 }
