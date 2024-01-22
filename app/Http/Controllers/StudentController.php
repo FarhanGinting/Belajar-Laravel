@@ -10,14 +10,20 @@ use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // $name = 'budi';
         // eloquent orm (Rekomendasi | ✅ Friendly User)
         //query builder (This Good 🤓)
         // raw query    (Not Recommended | 💀 SQL INJECTION)
-
-        $student = Student::paginate(15);
+        $keyword = $request->keyword;
+        $student = Student::with('class')
+            ->where('name', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('nis', 'LIKE', '%' . $keyword . '%')
+            ->orWhereHas('class', function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+            })
+            ->paginate(15);
         return view('student', ['studentList' => $student]);
 
         // Php Biasa
