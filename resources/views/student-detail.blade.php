@@ -4,6 +4,14 @@
 
     <h2>Anda sedang melihat data dari siswa yang bernama {{ $student->name }}</h2>
 
+<div class="my-3 d-flex justify-content-center">
+    @if ($student->image != '')
+    <img src="{{ asset('storage/photo/'.$student->image) }}" alt="" width="500px">
+    @else
+    <img src="{{ asset('images/avatar5.png') }}" alt="" width="500px">
+    @endif
+</div>
+
     <div class="mt-5">
         <table class="table table-bordered">
             <tr>

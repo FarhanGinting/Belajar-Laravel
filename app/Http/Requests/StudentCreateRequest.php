@@ -25,7 +25,7 @@ class StudentCreateRequest extends FormRequest
             'nis' => 'unique:students|max:10|required',
             'gender' => 'required',
             'name' => 'max:50|required',
-            'class' => 'required',
+            'class_id' => 'required',
         ];
     }
     public function attributes()

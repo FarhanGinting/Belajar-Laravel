@@ -127,14 +127,22 @@ class StudentController extends Controller
 
     public function store(StudentCreateRequest $request)
     {
+        $newName = '';
+        if ($request->file('photo')) {
+        $extension = $request->file('photo')->getClientOriginalExtension();
+        $newName = $request->name . '-' . now()->timestamp . '.' . $extension;
+        $request->file('photo')->storeAs('photo', $newName);
+        }
+        
 
+        
         // $student = new Student;
         // $student->name = $request->name;
         // $student->gender = $request->gender;
         // $student->nis = $request->nis;
         // $student->class_id = $request->class_id;
         // $student->save();
-
+        $request['image'] = $newName;
         $student = Student::create($request->all());
         if ($student) {
             Session::flash('status', 'Success');

@@ -26,8 +26,8 @@ class Student extends Model
         'name',
         'gender',
         'nis',
-        'class_id'
-        
+        'class_id',
+        'image',
     ];
 
     
