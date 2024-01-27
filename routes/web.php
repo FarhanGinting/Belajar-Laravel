@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\StudentController;
@@ -18,38 +19,41 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('home', [
-        'name' => 'Belajar Laravel',
-        'role' => 'admin',
-        'buah' => ['pisang', 'apel', 'jeruk', 'kiwi'],
-    ]);
+    return view('home');
 });
 
-Route::get('/students', [StudentController::class, 'index']);
-Route::get('/student-add', [StudentController::class, 'create']);
-Route::post('/student-store', [StudentController::class, 'store']);
-Route::get('/student-edit/{id}', [StudentController::class, 'edit']);
-Route::put('/student-update/{id}', [StudentController::class, 'update']);
-Route::get('/student-detail/{id}', [StudentController::class, 'show']);
-Route::get('/student-delete/{id}', [StudentController::class, 'delete']);
-Route::delete('/student-destroy/{id}', [StudentController::class, 'destroy']);
-Route::get('/students-showdeleted', [StudentController::class, 'showdeleted']);
-Route::get('/student/{id}/restore', [StudentController::class, 'restore']);
+Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'authenticating'])->middleware('guest');
 
-Route::get('/class', [ClassController::class, 'index']);
-Route::get('/class-add', [ClassController::class, 'create']);
-Route::post('/class-store', [ClassController::class, 'store']);
-Route::get('/class-detail/{id}', [ClassController::class, 'show']);
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
-Route::get('/extracurricular', [ExtracurricularController::class, 'index']);
-Route::get('/extracurricular-add', [ExtracurricularController::class, 'create']);
-Route::post('/extracurricular-store', [ExtracurricularController::class, 'store']);
-Route::get('/extracurricular-detail/{id}', [ExtracurricularController::class, 'show']);
 
-Route::get('/teacher', [TeacherController::class, 'index']);
-Route::get('/teacher-add', [TeacherController::class, 'create']);
-Route::post('/teacher-store', [TeacherController::class, 'store']);
-Route::get('/teacher-detail/{id}', [TeacherController::class, 'show']);
+
+Route::get('/students', [StudentController::class, 'index'])->middleware('auth');
+Route::get('/student-add', [StudentController::class, 'create'])->middleware('auth');
+Route::post('/student-store', [StudentController::class, 'store'])->middleware('auth');
+Route::get('/student-edit/{id}', [StudentController::class, 'edit'])->middleware('auth');
+Route::put('/student-update/{id}', [StudentController::class, 'update'])->middleware('auth');
+Route::get('/student-detail/{id}', [StudentController::class, 'show'])->middleware('auth');
+Route::get('/student-delete/{id}', [StudentController::class, 'delete'])->middleware('auth');
+Route::delete('/student-destroy/{id}', [StudentController::class, 'destroy'])->middleware('auth');
+Route::get('/students-showdeleted', [StudentController::class, 'showdeleted'])->middleware('auth');
+Route::get('/student/{id}/restore', [StudentController::class, 'restore'])->middleware('auth');
+
+Route::get('/class', [ClassController::class, 'index'])->middleware('auth');
+Route::get('/class-add', [ClassController::class, 'create'])->middleware('auth');
+Route::post('/class-store', [ClassController::class, 'store'])->middleware('auth');
+Route::get('/class-detail/{id}', [ClassController::class, 'show'])->middleware('auth');
+
+Route::get('/extracurricular', [ExtracurricularController::class, 'index'])->middleware('auth');
+Route::get('/extracurricular-add', [ExtracurricularController::class, 'create'])->middleware('auth');
+Route::post('/extracurricular-store', [ExtracurricularController::class, 'store'])->middleware('auth');
+Route::get('/extracurricular-detail/{id}', [ExtracurricularController::class, 'show'])->middleware('auth');
+
+Route::get('/teacher', [TeacherController::class, 'index'])->middleware('auth');
+Route::get('/teacher-add', [TeacherController::class, 'create'])->middleware('auth');
+Route::post('/teacher-store', [TeacherController::class, 'store'])->middleware('auth');
+Route::get('/teacher-detail/{id}', [TeacherController::class, 'show'])->middleware('auth');
 
 // Route::get('/about', function () {
 //     return 9*9;
