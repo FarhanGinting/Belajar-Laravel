@@ -78,5 +78,5 @@
     <div class="my-5">
         {{ $studentList->withQueryString()->links() }}
     </div>
-
+    <x-alert message='ini adalah halaman student' type='success' />
 @endsection

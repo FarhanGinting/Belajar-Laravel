@@ -5,6 +5,8 @@
         <h1>Ini Halaman Home</h1>
         <h2>Selamat Datang {{ Auth::user()->name }} ada adalah  {{ Auth::user()->role->name}}</h2>
 
+       <x-alert message='ini adalah halaman home' type='primary' />
+
        
 
         {{-- @if ($role == 'admin')
