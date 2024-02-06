@@ -53,14 +53,14 @@
                         @if (Auth::user()->role_id != 1 && Auth::user()->role_id != 2)
                             -
                             @else
-                            <a href="student-detail/{{ $data->id }}">Detail</a>
+                            <a href="student-detail/{{ $data->slug }}">Detail</a>
                             |
-                            <a href="student-edit/{{ $data->id }}"> Edit</a>
+                            <a href="student-edit/{{ $data->slug }}"> Edit</a>
                         @endif
                         
                         @if (Auth::user()->role_id == 1 )
                         |
-                        <a href="student-delete/{{ $data->id }}"> Delete</a>
+                        <a href="student-delete/{{ $data->slug }}"> Delete</a>
                         @endif
                         
                     </td>

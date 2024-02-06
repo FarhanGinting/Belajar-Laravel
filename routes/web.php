@@ -55,6 +55,8 @@ Route::get('/teacher-add', [TeacherController::class, 'create'])->middleware('au
 Route::post('/teacher-store', [TeacherController::class, 'store'])->middleware('auth');
 Route::get('/teacher-detail/{id}', [TeacherController::class, 'show'])->middleware('auth');
 
+// Route::get('/student-mass-update', [StudentController::class, 'massUpdate']);
+
 // Route::get('/about', function () {
 //     return 9*9;
 // });

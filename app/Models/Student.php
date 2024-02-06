@@ -28,6 +28,7 @@ class Student extends Model
         'nis',
         'class_id',
         'image',
+        'slug',
     ];
 
     

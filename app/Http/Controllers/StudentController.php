@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StudentCreateRequest;
-use App\Models\ClassRoom;
 use App\Models\Student;
+use App\Models\ClassRoom;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\StudentCreateRequest;
 
 class StudentController extends Controller
 {
@@ -112,10 +113,10 @@ class StudentController extends Controller
 
     }
 
-    public function show($id)
+    public function show($slug)
     {
         $student = Student::with(['class.homeroomTeacher', 'extracurriculars'])
-            ->findOrFail($id);
+            ->where('slug', $slug)->first();
         return view('student-detail', ['student' => $student]);
     }
 
@@ -143,6 +144,7 @@ class StudentController extends Controller
         // $student->class_id = $request->class_id;
         // $student->save();
         $request['image'] = $newName;
+        $request['slug'] = Str::slug($request->name, '-');
         $student = Student::create($request->all());
         if ($student) {
             Session::flash('status', 'Success');
@@ -151,9 +153,9 @@ class StudentController extends Controller
         return redirect('/students');
     }
 
-    public function edit(Request $request, $id)
+    public function edit(Request $request, $slug)
     {
-        $student = Student::with('class')->findOrFail($id);
+        $student = Student::with('class')->where('slug', $slug)->first();;
         $class = ClassRoom::where('id', '!=', $student->class_id)->get(['id', 'name']);
         return view('student-edit', ['student' => $student, 'class' => $class]);
     }
@@ -175,9 +177,9 @@ class StudentController extends Controller
         return redirect('/students');
     }
 
-    public function delete($id)
+    public function delete($slug)
     {
-        $student = Student::findOrFail($id);
+        $student = Student::where('slug', $slug)->first();;
         return view('student-delete', ['student' => $student]);
     }
 
@@ -213,4 +215,12 @@ class StudentController extends Controller
         }
         return redirect('/students');
     }
+
+    // public function massUpdate(){
+    //     $student = Student::whereNull('slug')->get();
+    //     collect($student)->map(function($item){
+    //         $item->slug = Str::slug($item->name, '-');
+    //         $item->save();
+    //     });
+    // }
 }
