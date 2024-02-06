@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\ClassRoom;
 use App\Models\Exctracurricular;
-
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Sluggable ;
 
     // protected $table = 'students';
     // protected $primaryKey = 'id';
@@ -30,6 +30,15 @@ class Student extends Model
         'image',
         'slug',
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
     
     public function class()

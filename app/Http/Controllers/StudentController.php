@@ -144,7 +144,6 @@ class StudentController extends Controller
         // $student->class_id = $request->class_id;
         // $student->save();
         $request['image'] = $newName;
-        $request['slug'] = Str::slug($request->name, '-');
         $student = Student::create($request->all());
         if ($student) {
             Session::flash('status', 'Success');
