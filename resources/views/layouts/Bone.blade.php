@@ -41,6 +41,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">logout</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/change-password">Change Password</a>
+                    </li>
                 </ul>
 
             </div>

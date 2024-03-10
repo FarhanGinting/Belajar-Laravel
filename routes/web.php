@@ -24,8 +24,9 @@ Route::get('/', function () {
 
 Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'authenticating'])->middleware('guest');
-
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
+Route::get('/change-password', [AuthController::class, 'changePassword'])->middleware('auth');
+Route::post('/change-password', [AuthController::class, 'prosesChangePassword'])->middleware('auth');
 
 
 

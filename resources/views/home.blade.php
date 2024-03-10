@@ -2,14 +2,19 @@
 @section('title', 'Home')
 @section('content')
 
-        <h1>Ini Halaman Home</h1>
-        <h2>Selamat Datang {{ Auth::user()->name }} ada adalah  {{ Auth::user()->role->name}}</h2>
+    <h1>Ini Halaman Home</h1>
+    <h2>Selamat Datang {{ Auth::user()->name }} ada adalah {{ Auth::user()->role->name }}</h2>
 
-       <x-alert message='ini adalah halaman home' type='primary' />
+    <x-alert message='ini adalah halaman home' type='primary' />
 
-       
+    @if (Session::has('status'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('message') }}
+        </div>
+    @endif
 
-        {{-- @if ($role == 'admin')
+
+    {{-- @if ($role == 'admin')
             <a href="">Ke halaman Admin</a>
             @elseif ($role == 'staff')
             <a href="">Ke halaman Gudang</a>
@@ -17,7 +22,7 @@
             <a href="">Ke Halaman Apapun</a>
         @endif --}}
 
-        {{-- @switch($role)
+    {{-- @switch($role)
             @case($role == 'admin')
                 <a href="">Ke halaman Admin</a>
                 @break
@@ -29,11 +34,11 @@
                 
         @endswitch --}}
 
-        {{-- @for ($i = 0; $i < 5; $i++)
+    {{-- @for ($i = 0; $i < 5; $i++)
             {{ $i }} <br>
         @endfor --}}
 
-{{-- 
+    {{-- 
         <table class="table">
             <tr>
                 <th>No.</th>
@@ -46,5 +51,5 @@
                 </tr>
             @endforeach
         </table> --}}
-        
+
 @endsection
